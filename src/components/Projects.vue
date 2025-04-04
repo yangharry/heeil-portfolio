@@ -119,6 +119,16 @@
             </svg>
             GitHub
           </a>
+          <a
+            href="https://yangharry.github.io/heeil-portfolio/"
+            target="_blank"
+            class="inline-flex items-center bg-green-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs sm:text-sm font-medium hover:bg-green-700 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            웹
+          </a>
         </div>
       </div>
     </div>

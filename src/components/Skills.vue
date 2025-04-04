@@ -1,5 +1,5 @@
 <template>
-  <section id="skills" class="bg-gradient-to-r from-amber-200 to-amber-300 rounded-xl p-4 mb-4">
+  <section id="skills" class="bg-gradient-to-r from-teal-200 to-blue-200 rounded-xl p-4 mb-4">
     <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800 flex items-center transform transition-transform hover:scale-105 duration-300">
       <span class="mr-2 sm:mr-3 text-xl sm:text-2xl animate-bounce">🔧</span> SKILLS
     </h2>

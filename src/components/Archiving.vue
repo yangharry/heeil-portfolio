@@ -59,7 +59,7 @@ export default {
       // 아카이빙 항목 데이터 배열
       archivingItems: [
         {
-          iconSrc: 'public/github-icon.png',
+          iconSrc: 'github-black-icon.svg',
           title: 'GitHub',
           tag: 'Code Repository',
           url: 'https://github.com/yangharry',
@@ -68,7 +68,7 @@ export default {
           descriptions: ['소스 코드 저장소입니다.', '프론트엔드 & 백엔드 코드', '다양한 개인 프로젝트 코드'],
         },
         {
-          iconSrc: 'public/tistory-logo.svg',
+          iconSrc: 'tistory-logo.svg',
           title: '기술 블로그',
           tag: 'Tech Blog',
           url: 'https://startatage30.tistory.com/',

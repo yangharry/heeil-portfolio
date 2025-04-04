@@ -1,133 +1,79 @@
 <template>
+  <!-- 프로젝트 섹션: 패딩과 마진 적용 -->
   <section id="projects" class="p-4 mb-4">
+    <!-- 섹션 제목: 반응형 폰트 크기, 굵은 글씨, 마진 적용, 호버 시 크기 변화 효과 -->
     <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800 flex items-center transform transition-transform hover:scale-105 duration-300">
+      <!-- 아이콘: 우측 마진, 통통 튀는 애니메이션 적용 -->
       <span class="mr-2 sm:mr-3 text-xl sm:text-2xl animate-bounce">💻</span> PROJECTS
     </h2>
+    <!-- 프로젝트 카드 그리드: 모바일에서 단일 열, 데스크탑에서 2열 배치 -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+      <!-- v-for를 사용하여 프로젝트 카드 생성 -->
       <div
+        v-for="(project, index) in projects"
+        :key="index"
         class="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 transform hover:-translate-y-2 flex flex-col min-h-[380px]"
       >
+        <!-- 상단 정보 영역: 프로젝트 유형 및 제목 -->
         <div class="mb-3 sm:mb-4">
-          <span class="inline-block bg-gradient-to-r from-red-400 to-red-500 text-white text-xs font-medium py-1 px-3 rounded-full mb-2">개인 프로젝트</span>
+          <!-- 프로젝트 유형 태그: 그라데이션 배경, 둥근 모서리 -->
+          <span class="inline-block bg-gradient-to-r from-red-400 to-red-500 text-white text-xs font-medium py-1 px-3 rounded-full mb-2">{{ project.type }}</span>
+          <!-- 프로젝트 제목: 반응형 폰트, 굵은 글씨, 마진 적용 -->
           <h3 class="text-lg sm:text-xl font-bold text-gray-800 mt-2 mb-2 sm:mb-3 flex flex-wrap items-center">
-            원알엠(ONERM)
-            <span class="ml-2 text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full mt-1 sm:mt-0">PWA App</span>
+            {{ project.title }}
+            <!-- 프로젝트 종류 태그: 작은 폰트, 배경색, 둥근 모서리 -->
+            <span class="ml-2 text-xs" :class="project.categoryClass">{{ project.category }}</span>
           </h3>
         </div>
 
+        <!-- 기술 스택 영역: 플렉스 레이아웃, 간격 설정 -->
         <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">Vue.js</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">Express.js</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">MongoDB</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">OCI</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">Docker</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">GitHub Actions</span>
+          <!-- 각 기술 태그: 회색 배경, 둥근 모서리, 호버 효과 -->
+          <span
+            v-for="(tech, techIndex) in project.technologies"
+            :key="techIndex"
+            class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors"
+          >
+            {{ tech }}
+          </span>
         </div>
 
+        <!-- 프로젝트 설명 목록: 패딩, 간격 설정 -->
         <ul class="pl-4 sm:pl-5 mb-4 sm:mb-5 space-y-1 sm:space-y-2">
-          <li class="text-xs sm:text-sm text-gray-600 flex items-center">
-            <span class="inline-block w-1.5 h-1.5 bg-blue-500 rounded-full mr-1 sm:mr-2"></span>
-            운동기록 웹앱
-          </li>
-          <li class="text-xs sm:text-sm text-gray-600 flex items-center">
-            <span class="inline-block w-1.5 h-1.5 bg-blue-500 rounded-full mr-1 sm:mr-2"></span>
-            주요기능: 운동기록, 수행시간, 쉬는시간, 예상 1RM 제공
+          <!-- 각 설명 항목: 작은 폰트, 회색 텍스트, 파란색 원형 마커 -->
+          <li v-for="(desc, descIndex) in project.descriptions" :key="descIndex" class="text-xs sm:text-sm text-gray-600 flex items-center">
+            <span :class="['inline-block', 'w-1.5', 'h-1.5', project.markerColor, 'rounded-full', 'mr-1', 'sm:mr-2']"></span>
+            {{ desc }}
           </li>
         </ul>
 
+        <!-- 링크 버튼 영역: 자동 마진으로 하단 배치, 간격 설정, 중앙/왼쪽 정렬 반응형 조정 -->
         <div class="mt-auto pt-4 sm:pt-6 flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-start">
+          <!-- 동적으로 링크 버튼 생성 -->
           <a
-            href="https://github.com/AngryStock/onerm"
+            v-for="(link, linkIndex) in project.links"
+            :key="linkIndex"
+            :href="link.url"
             target="_blank"
-            class="inline-flex items-center bg-gray-800 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs sm:text-sm font-medium hover:bg-gray-700 transition-colors"
+            :class="[
+              'inline-flex',
+              'items-center',
+              'text-white',
+              'py-1.5',
+              'sm:py-2',
+              'px-3',
+              'sm:px-4',
+              'rounded',
+              'text-xs',
+              'sm:text-sm',
+              'font-medium',
+              'hover:bg-opacity-90',
+              'transition-colors',
+              link.bgClass,
+            ]"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-              />
-            </svg>
-            프론트엔드
-          </a>
-          <a
-            href="https://github.com/yangharry/onerm"
-            target="_blank"
-            class="inline-flex items-center bg-blue-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-              />
-            </svg>
-            백엔드
-          </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=kr.onerm.twa&hl=ko"
-            target="_blank"
-            class="inline-flex items-center bg-teal-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs sm:text-sm font-medium hover:bg-teal-700 transition-colors"
-          >
-            <img src="/public/android-white-log.png" alt="Android" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-            안드로이드
-          </a>
-          <a
-            href="https://onerm.kr"
-            target="_blank"
-            class="inline-flex items-center bg-green-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs sm:text-sm font-medium hover:bg-green-700 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            웹
-          </a>
-        </div>
-      </div>
-
-      <div
-        class="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 transform hover:-translate-y-2 flex flex-col h-full min-h-[380px]"
-      >
-        <div class="mb-3 sm:mb-4">
-          <span class="inline-block bg-gradient-to-r from-red-400 to-red-500 text-white text-xs font-medium py-1 px-3 rounded-full mb-2">개인 프로젝트</span>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-800 mt-2 mb-2 sm:mb-3 flex flex-wrap items-center">
-            포트폴리오 웹사이트
-            <span class="ml-2 text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full mt-1 sm:mt-0">Web</span>
-          </h3>
-        </div>
-
-        <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">Vue.js</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">TypeScript</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">Tailwind CSS</span>
-          <span class="bg-gray-100 text-gray-600 text-xs py-1 px-2 sm:px-3 rounded-full hover:bg-gray-200 transition-colors">Vite</span>
-        </div>
-
-        <ul class="pl-4 sm:pl-5 mb-4 sm:mb-5 space-y-1 sm:space-y-2">
-          <li class="text-xs sm:text-sm text-gray-600 flex items-center">
-            <span class="inline-block w-1.5 h-1.5 bg-purple-500 rounded-full mr-1 sm:mr-2"></span>
-            개인 포트폴리오 웹사이트
-          </li>
-        </ul>
-
-        <div class="mt-auto pt-4 sm:pt-6 flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-start">
-          <a
-            href="#"
-            target="_blank"
-            class="inline-flex items-center bg-gray-800 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs sm:text-sm font-medium hover:bg-gray-700 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-              />
-            </svg>
-            GitHub
-          </a>
-          <a
-            href="https://yangharry.github.io/heeil-portfolio/"
-            target="_blank"
-            class="inline-flex items-center bg-green-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs sm:text-sm font-medium hover:bg-green-700 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            웹
+            <img :src="link.iconSrc" :alt="link.text" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+            {{ link.text }}
           </a>
         </div>
       </div>
@@ -138,21 +84,88 @@
 <script>
 export default {
   name: 'Projects',
+  data() {
+    return {
+      // 프로젝트 데이터 배열
+      projects: [
+        {
+          type: '개인 프로젝트',
+          title: '원알엠(ONERM)',
+          category: 'PWA App',
+          categoryClass: 'bg-blue-100 text-blue-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
+          technologies: ['Vue.js', 'Express.js', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions'],
+          markerColor: 'bg-blue-500',
+          descriptions: ['운동기록 웹앱', '주요기능: 운동기록, 수행시간, 쉬는시간, 예상 1RM 제공'],
+          links: [
+            {
+              url: 'https://github.com/AngryStock/onerm',
+              text: '프론트엔드',
+              bgClass: 'bg-gray-800 hover:bg-gray-700',
+              iconSrc: `public/github-icon.svg`,
+            },
+            {
+              url: 'https://github.com/yangharry/onerm',
+              text: '백엔드',
+              bgClass: 'bg-blue-600 hover:bg-blue-700',
+              iconSrc: `public/github-icon.svg`,
+            },
+            {
+              url: 'https://play.google.com/store/apps/details?id=kr.onerm.twa&hl=ko',
+              text: '안드로이드',
+              bgClass: 'bg-teal-600 hover:bg-teal-700',
+              iconSrc: 'public/android-white-log.png',
+            },
+            {
+              url: 'https://onerm.kr',
+              text: '웹',
+              bgClass: 'bg-green-600 hover:bg-green-700',
+              iconSrc: `public/web-icon.svg`,
+            },
+          ],
+        },
+        {
+          type: '개인 프로젝트',
+          title: '포트폴리오 웹사이트',
+          category: 'Web',
+          categoryClass: 'bg-purple-100 text-purple-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
+          technologies: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Vite'],
+          markerColor: 'bg-purple-500',
+          descriptions: ['개인 포트폴리오 웹사이트'],
+          links: [
+            {
+              url: 'https://github.com/yangharry/heeil-portfolio',
+              text: 'GitHub',
+              bgClass: 'bg-gray-800 hover:bg-gray-700',
+              iconSrc: `public/github-icon.svg`,
+            },
+            {
+              url: 'https://yangharry.github.io/heeil-portfolio/',
+              text: '웹',
+              bgClass: 'bg-green-600 hover:bg-green-700',
+              iconSrc: `public/web-icon.svg`,
+            },
+          ],
+        },
+      ],
+    };
+  },
   mounted() {
-    // Add intersection observer for fade-in animation
+    // 스크롤 시 애니메이션을 위한 인터섹션 옵저버 설정
     const observerOptions = {
-      threshold: 0.1,
+      threshold: 0.1, // 요소가 10% 이상 화면에 보일 때 콜백 실행
     };
 
+    // 인터섹션 옵저버 생성: 요소가 화면에 보일 때 fade-in-visible 클래스 추가
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-visible');
-          observer.unobserve(entry.target);
+          entry.target.classList.add('fade-in-visible'); // 요소가 보이면 나타나는 효과 적용
+          observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 관찰 중단
         }
       });
     }, observerOptions);
 
+    // 모든 프로젝트 카드 요소에 fade-in 클래스 추가하고 옵저버로 관찰
     document.querySelectorAll('#projects .grid > div').forEach((el) => {
       el.classList.add('fade-in');
       observer.observe(el);
@@ -162,17 +175,20 @@ export default {
 </script>
 
 <style scoped>
+/* 페이드인 효과 초기 상태: 투명하고 아래에서 위로 이동하는 효과 준비 */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+/* 페이드인 효과 완료 상태: 완전히 보이고 원래 위치로 이동 */
 .fade-in-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* 작은 화면에서 간격 및 레이아웃 조정 */
 @media (max-width: 360px) {
   .flex-wrap {
     gap: 0.5rem;

@@ -1,8 +1,13 @@
 <template>
+  <!-- 푸터 섹션: 패딩, 그라데이션 배경, 흰색 텍스트, 그림자, 위쪽 둥근 모서리 적용 -->
   <footer class="p-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white shadow-lg rounded-t-xl">
+    <!-- 푸터 콘텐츠: 중앙 정렬, 전환 효과 적용 -->
     <div class="text-center transform transition-transform duration-300">
+      <!-- 저작권 표시: 반응형 폰트 크기, 마진 적용 -->
       <p class="text-xs sm:text-sm mb-3">© 2025 양희일. All rights reserved.</p>
+      <!-- 연락처 정보: 모바일에서 세로, 데스크탑에서 가로 배치 -->
       <div class="text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center">
+        <!-- 이메일 표시: 아이콘과 텍스트 함께 표시, 모바일에서 마진 조정 -->
         <span class="inline-flex items-center mb-2 sm:mb-0 sm:mr-3">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
@@ -14,6 +19,7 @@
           </svg>
           myid7771@naver.com
         </span>
+        <!-- 전화번호 표시: 아이콘과 텍스트 함께 표시 -->
         <span class="inline-flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
@@ -26,7 +32,9 @@
           010-4745-8523
         </span>
       </div>
+      <!-- 소셜 링크: 마진 적용, 중앙 정렬, 간격 설정 -->
       <div class="mt-3 sm:mt-4 flex justify-center space-x-3 sm:space-x-4">
+        <!-- GitHub 링크: 회색 색상, 호버 시 크기 변화 효과 -->
         <a href="#" class="text-gray-300 transition-colors transform hover:scale-110 duration-200">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -34,6 +42,7 @@
             />
           </svg>
         </a>
+        <!-- 티스토리 링크: 회색 색상, 호버 시 크기 변화 효과 -->
         <a href="https://startatage30.tistory.com/" target="_blank" class="text-gray-300 transition-colors transform hover:scale-110 duration-200">
           <img src="/tistory-logo.svg" alt="티스토리" class="h-5 w-5 sm:h-6 sm:w-6 fill-current text-white" />
         </a>
@@ -49,6 +58,7 @@ export default {
 </script>
 
 <style scoped>
+/* 작은 화면에서 패딩 조정 */
 @media (max-width: 360px) {
   .text-center {
     padding: 0 0.5rem;

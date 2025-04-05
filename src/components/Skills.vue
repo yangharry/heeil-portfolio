@@ -26,7 +26,7 @@
           <span
             v-for="skill in category.skills"
             :key="skill.name"
-            :class="`px-2 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[${skill.bgColor}] ${skill.textColor} hover:scale-105 transition-transform cursor-default`"
+            :class="`px-2 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium ${skill.bgColor} ${skill.textColor} hover:scale-105 transition-transform cursor-default`"
             >{{ skill.name }}</span
           >
         </div>
@@ -60,11 +60,11 @@ const skillCategories = ref<SkillCategory[]>([
     tagText: 'Development',
     tagColor: 'blue',
     skills: [
-      { name: 'JavaScript', bgColor: '#F7DF1E', textColor: 'text-gray-800' },
-      { name: 'TypeScript', bgColor: '#3178C6', textColor: 'text-white' },
-      { name: 'React', bgColor: '#61DAFB', textColor: 'text-gray-800' },
-      { name: 'Vue', bgColor: '#4FC08D', textColor: 'text-white' },
-      { name: 'Tailwind CSS', bgColor: '#38BDF8', textColor: 'text-white' },
+      { name: 'JavaScript', bgColor: 'bg-[#F7DF1E]', textColor: 'text-gray-800' },
+      { name: 'TypeScript', bgColor: 'bg-[#3178C6]', textColor: 'text-white' },
+      { name: 'React', bgColor: 'bg-[#61DAFB]', textColor: 'text-gray-800' },
+      { name: 'Vue', bgColor: 'bg-[#4FC08D]', textColor: 'text-white' },
+      { name: 'Tailwind CSS', bgColor: 'bg-[#38BDF8]', textColor: 'text-white' },
     ],
   },
   {
@@ -72,9 +72,9 @@ const skillCategories = ref<SkillCategory[]>([
     tagText: 'Server',
     tagColor: 'green',
     skills: [
-      { name: 'Node.js', bgColor: '#339933', textColor: 'text-white' },
-      { name: 'Express', bgColor: 'black', textColor: 'text-white' },
-      { name: 'MongoDB', bgColor: '#47A248', textColor: 'text-white' },
+      { name: 'Node.js', bgColor: 'bg-[#339933]', textColor: 'text-white' },
+      { name: 'Express', bgColor: 'bg-[black]', textColor: 'text-white' },
+      { name: 'MongoDB', bgColor: 'bg-[#47A248]', textColor: 'text-white' },
     ],
   },
   {
@@ -82,11 +82,9 @@ const skillCategories = ref<SkillCategory[]>([
     tagText: 'Deployment',
     tagColor: 'purple',
     skills: [
-      { name: 'Git', bgColor: '#F05032', textColor: 'text-white' },
-      { name: 'GitHub', bgColor: '#181717', textColor: 'text-white' },
-      { name: 'Docker', bgColor: '#2496ED', textColor: 'text-white' },
-      { name: 'OCI', bgColor: '#D24939', textColor: 'text-white' },
-      { name: 'GitHub Actions', bgColor: '#2088FF', textColor: 'text-white' },
+      { name: 'Docker', bgColor: 'bg-[#2496ED]', textColor: 'text-white' },
+      { name: 'OCI', bgColor: 'bg-[#D24939]', textColor: 'text-white' },
+      { name: 'GitHub Actions', bgColor: 'bg-[#2088FF]', textColor: 'text-white' },
     ],
   },
 ]);

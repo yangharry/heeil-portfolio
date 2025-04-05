@@ -35,45 +35,48 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'AboutMe',
-  data() {
-    return {
-      // 프로필 정보 배열: 각 항목별 아이콘, 라벨, 값 정의
-      profileItems: [
-        { icon: '🧑', label: '이름', value: '양희일' },
-        { icon: '🎂', label: '생년월일', value: '93.05.21' },
-        { icon: '📍', label: '주소', value: '서울시 강동구' },
-        { icon: '📞', label: '연락처', value: '010-4745-8523' },
-        { icon: '✉️', label: '이메일', value: 'myid7771@naver.com' },
-        { icon: '🎓', label: '학력', value: '세종대학교(기계공학과)' },
-      ],
-    };
-  },
-  mounted() {
-    // 스크롤 시 애니메이션을 위한 인터섹션 옵저버 설정
-    const observerOptions = {
-      threshold: 0.1, // 요소가 10% 이상 화면에 보일 때 콜백 실행
-    };
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
 
-    // 인터섹션 옵저버 생성: 요소가 화면에 보일 때 fade-in-visible 클래스 추가
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-visible'); // 요소가 보이면 나타나는 효과 적용
-          observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 관찰 중단
-        }
-      });
-    }, observerOptions);
+// 프로필 아이템 타입 정의
+interface ProfileItem {
+  icon: string;
+  label: string;
+  value: string;
+}
 
-    // 모든 AboutMe 카드 요소에 fade-in 클래스 추가하고 옵저버로 관찰
-    document.querySelectorAll('#about .grid > div').forEach((el) => {
-      el.classList.add('fade-in');
-      observer.observe(el);
+// 프로필 정보 배열: 각 항목별 아이콘, 라벨, 값 정의
+const profileItems = ref<ProfileItem[]>([
+  { icon: '🧑', label: '이름', value: '양희일' },
+  { icon: '🎂', label: '생년월일', value: '93.05.21' },
+  { icon: '📍', label: '주소', value: '서울시 강동구' },
+  { icon: '📞', label: '연락처', value: '010-4745-8523' },
+  { icon: '✉️', label: '이메일', value: 'myid7771@naver.com' },
+  { icon: '🎓', label: '학력', value: '세종대학교(기계공학과)' },
+]);
+
+onMounted(() => {
+  // 스크롤 시 애니메이션을 위한 인터섹션 옵저버 설정
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1, // 요소가 10% 이상 화면에 보일 때 콜백 실행
+  };
+
+  // 인터섹션 옵저버 생성: 요소가 화면에 보일 때 fade-in-visible 클래스 추가
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-visible'); // 요소가 보이면 나타나는 효과 적용
+        observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 관찰 중단
+      }
     });
-  },
-};
+  }, observerOptions);
+
+  // 모든 AboutMe 카드 요소에 fade-in 클래스 추가하고 옵저버로 관찰
+  document.querySelectorAll('#about .grid > div').forEach((el) => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+});
 </script>
 
 <style scoped>

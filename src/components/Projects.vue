@@ -81,97 +81,113 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'Projects',
-  data() {
-    return {
-      // 프로젝트 데이터 배열
-      projects: [
-        {
-          type: '개인 프로젝트',
-          title: '원알엠(ONERM)',
-          category: 'PWA App',
-          categoryClass: 'bg-blue-100 text-blue-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
-          technologies: ['Vue.js', 'Express.js', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions'],
-          markerColor: 'bg-blue-500',
-          descriptions: ['운동기록 웹앱', '주요기능: 운동기록, 수행시간, 쉬는시간, 예상 1RM 제공'],
-          links: [
-            {
-              url: 'https://github.com/AngryStock/onerm',
-              text: '프론트엔드',
-              bgClass: 'bg-gray-800 hover:bg-gray-700',
-              iconSrc: `github-white-icon.svg`,
-            },
-            {
-              url: 'https://github.com/yangharry/onerm',
-              text: '백엔드',
-              bgClass: 'bg-blue-600 hover:bg-blue-700',
-              iconSrc: `github-white-icon.svg`,
-            },
-            {
-              url: 'https://play.google.com/store/apps/details?id=kr.onerm.twa&hl=ko',
-              text: '안드로이드',
-              bgClass: 'bg-teal-600 hover:bg-teal-700',
-              iconSrc: 'android-white-log.png',
-            },
-            {
-              url: 'https://onerm.kr',
-              text: '웹',
-              bgClass: 'bg-green-600 hover:bg-green-700',
-              iconSrc: `web-icon.svg`,
-            },
-          ],
-        },
-        {
-          type: '개인 프로젝트',
-          title: '포트폴리오 웹사이트',
-          category: 'Web',
-          categoryClass: 'bg-purple-100 text-purple-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
-          technologies: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Vite'],
-          markerColor: 'bg-purple-500',
-          descriptions: ['개인 포트폴리오 웹사이트'],
-          links: [
-            {
-              url: 'https://github.com/yangharry/heeil-portfolio',
-              text: 'GitHub',
-              bgClass: 'bg-gray-800 hover:bg-gray-700',
-              iconSrc: `github-white-icon.svg`,
-            },
-            {
-              url: 'https://yangharry.github.io/heeil-portfolio/',
-              text: '웹',
-              bgClass: 'bg-green-600 hover:bg-green-700',
-              iconSrc: `web-icon.svg`,
-            },
-          ],
-        },
-      ],
-    };
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+
+// 프로젝트 링크 인터페이스 정의
+interface ProjectLink {
+  url: string;
+  text: string;
+  bgClass: string;
+  iconSrc: string;
+}
+
+// 프로젝트 인터페이스 정의
+interface Project {
+  type: string;
+  title: string;
+  category: string;
+  categoryClass: string;
+  technologies: string[];
+  markerColor: string;
+  descriptions: string[];
+  links: ProjectLink[];
+}
+
+// 프로젝트 데이터 배열
+const projects = ref<Project[]>([
+  {
+    type: '개인 프로젝트',
+    title: '원알엠(ONERM)',
+    category: 'PWA App',
+    categoryClass: 'bg-blue-100 text-blue-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
+    technologies: ['Vue.js', 'Express.js', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions'],
+    markerColor: 'bg-blue-500',
+    descriptions: ['운동기록 웹앱', '주요기능: 운동기록, 수행시간, 쉬는시간, 예상 1RM 제공'],
+    links: [
+      {
+        url: 'https://github.com/AngryStock/onerm',
+        text: '프론트엔드',
+        bgClass: 'bg-gray-800 hover:bg-gray-700',
+        iconSrc: `github-white-icon.svg`,
+      },
+      {
+        url: 'https://github.com/yangharry/onerm',
+        text: '백엔드',
+        bgClass: 'bg-blue-600 hover:bg-blue-700',
+        iconSrc: `github-white-icon.svg`,
+      },
+      {
+        url: 'https://play.google.com/store/apps/details?id=kr.onerm.twa&hl=ko',
+        text: '안드로이드',
+        bgClass: 'bg-teal-600 hover:bg-teal-700',
+        iconSrc: 'android-white-log.png',
+      },
+      {
+        url: 'https://onerm.kr',
+        text: '웹',
+        bgClass: 'bg-green-600 hover:bg-green-700',
+        iconSrc: `web-icon.svg`,
+      },
+    ],
   },
-  mounted() {
-    // 스크롤 시 애니메이션을 위한 인터섹션 옵저버 설정
-    const observerOptions = {
-      threshold: 0.1, // 요소가 10% 이상 화면에 보일 때 콜백 실행
-    };
+  {
+    type: '개인 프로젝트',
+    title: '포트폴리오 웹사이트',
+    category: 'Web',
+    categoryClass: 'bg-purple-100 text-purple-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
+    technologies: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    markerColor: 'bg-purple-500',
+    descriptions: ['개인 포트폴리오 웹사이트'],
+    links: [
+      {
+        url: 'https://github.com/yangharry/heeil-portfolio',
+        text: 'GitHub',
+        bgClass: 'bg-gray-800 hover:bg-gray-700',
+        iconSrc: `github-white-icon.svg`,
+      },
+      {
+        url: 'https://yangharry.github.io/heeil-portfolio/',
+        text: '웹',
+        bgClass: 'bg-green-600 hover:bg-green-700',
+        iconSrc: `web-icon.svg`,
+      },
+    ],
+  },
+]);
 
-    // 인터섹션 옵저버 생성: 요소가 화면에 보일 때 fade-in-visible 클래스 추가
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-visible'); // 요소가 보이면 나타나는 효과 적용
-          observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 관찰 중단
-        }
-      });
-    }, observerOptions);
+onMounted(() => {
+  // 스크롤 시 애니메이션을 위한 인터섹션 옵저버 설정
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1, // 요소가 10% 이상 화면에 보일 때 콜백 실행
+  };
 
-    // 모든 프로젝트 카드 요소에 fade-in 클래스 추가하고 옵저버로 관찰
-    document.querySelectorAll('#projects .grid > div').forEach((el) => {
-      el.classList.add('fade-in');
-      observer.observe(el);
+  // 인터섹션 옵저버 생성: 요소가 화면에 보일 때 fade-in-visible 클래스 추가
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-visible'); // 요소가 보이면 나타나는 효과 적용
+        observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 관찰 중단
+      }
     });
-  },
-};
+  }, observerOptions);
+
+  // 모든 프로젝트 카드 요소에 fade-in 클래스 추가하고 옵저버로 관찰
+  document.querySelectorAll('#projects .grid > div').forEach((el) => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+});
 </script>
 
 <style scoped>

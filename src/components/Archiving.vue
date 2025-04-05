@@ -51,57 +51,64 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'Archiving',
-  data() {
-    return {
-      // 아카이빙 항목 데이터 배열
-      archivingItems: [
-        {
-          iconSrc: 'github-black-icon.svg',
-          title: 'GitHub',
-          tag: 'Code Repository',
-          url: 'https://github.com/yangharry',
-          linkText: 'github.com/yangharry',
-          markerColor: 'bg-blue-500',
-          descriptions: ['소스 코드 저장소입니다.', '프론트엔드 & 백엔드 코드', '다양한 개인 프로젝트 코드'],
-        },
-        {
-          iconSrc: 'tistory-logo.svg',
-          title: '기술 블로그',
-          tag: 'Tech Blog',
-          url: 'https://startatage30.tistory.com/',
-          linkText: 'startatage30.tistory.com',
-          markerColor: 'bg-red-500',
-          descriptions: ['개발 관련 경험과 지식을 공유합니다.', 'JavaScript, React, Docker 등 다양한 기술 포스팅', '문제 해결 방법 정리'],
-        },
-      ],
-    };
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+
+// 아카이빙 항목 인터페이스 정의
+interface ArchivingItem {
+  iconSrc: string;
+  title: string;
+  tag: string;
+  url: string;
+  linkText: string;
+  markerColor: string;
+  descriptions: string[];
+}
+
+// 아카이빙 항목 데이터 배열
+const archivingItems = ref<ArchivingItem[]>([
+  {
+    iconSrc: 'github-black-icon.svg',
+    title: 'GitHub',
+    tag: 'Code Repository',
+    url: 'https://github.com/yangharry',
+    linkText: 'github.com/yangharry',
+    markerColor: 'bg-blue-500',
+    descriptions: ['소스 코드 저장소입니다.', '프론트엔드 & 백엔드 코드', '다양한 개인 프로젝트 코드'],
   },
-  mounted() {
-    // 스크롤 시 애니메이션을 위한 인터섹션 옵저버 설정
-    const observerOptions = {
-      threshold: 0.1, // 요소가 10% 이상 화면에 보일 때 콜백 실행
-    };
+  {
+    iconSrc: 'tistory-logo.svg',
+    title: '기술 블로그',
+    tag: 'Tech Blog',
+    url: 'https://startatage30.tistory.com/',
+    linkText: 'startatage30.tistory.com',
+    markerColor: 'bg-red-500',
+    descriptions: ['개발 관련 경험과 지식을 공유합니다.', 'JavaScript, React, Docker 등 다양한 기술 포스팅', '문제 해결 방법 정리'],
+  },
+]);
 
-    // 인터섹션 옵저버 생성: 요소가 화면에 보일 때 fade-in-visible 클래스 추가
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-visible'); // 요소가 보이면 나타나는 효과 적용
-          observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 관찰 중단
-        }
-      });
-    }, observerOptions);
+onMounted(() => {
+  // 스크롤 시 애니메이션을 위한 인터섹션 옵저버 설정
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1, // 요소가 10% 이상 화면에 보일 때 콜백 실행
+  };
 
-    // 모든 아카이빙 카드 요소에 fade-in 클래스 추가하고 옵저버로 관찰
-    document.querySelectorAll('#archiving .grid > div').forEach((el) => {
-      el.classList.add('fade-in');
-      observer.observe(el);
+  // 인터섹션 옵저버 생성: 요소가 화면에 보일 때 fade-in-visible 클래스 추가
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-visible'); // 요소가 보이면 나타나는 효과 적용
+        observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 관찰 중단
+      }
     });
-  },
-};
+  }, observerOptions);
+
+  // 모든 아카이빙 카드 요소에 fade-in 클래스 추가하고 옵저버로 관찰
+  document.querySelectorAll('#archiving .grid > div').forEach((el) => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+});
 </script>
 
 <style scoped>

@@ -10,10 +10,9 @@
       <!-- 메뉴 항목: 중앙 정렬, 리스트 스타일 제거 -->
       <ul class="flex list-none m-0 p-0 flex-wrap justify-center">
         <!-- 각 메뉴 항목: 마진 적용, 호버 시 색상 변경 효과 -->
-        <li class="mx-2 sm:ml-6 my-1"><a href="#about" class="no-underline text-gray-700 font-medium text-sm hover:text-indigo-500 transition-colors">ABOUT</a></li>
-        <li class="mx-2 sm:ml-6 my-1"><a href="#skills" class="no-underline text-gray-700 font-medium text-sm hover:text-indigo-500 transition-colors">SKILLS</a></li>
-        <li class="mx-2 sm:ml-6 my-1"><a href="#archiving" class="no-underline text-gray-700 font-medium text-sm hover:text-indigo-500 transition-colors">ARCHIVING</a></li>
-        <li class="mx-2 sm:ml-6 my-1"><a href="#projects" class="no-underline text-gray-700 font-medium text-sm hover:text-indigo-500 transition-colors">PROJECTS</a></li>
+        <li v-for="item in menuItems" :key="item.id" class="mx-2 sm:ml-6 my-1">
+          <a :href="item.href" class="no-underline text-gray-700 font-medium text-sm hover:text-indigo-500 transition-colors">{{ item.text }}</a>
+        </li>
       </ul>
     </nav>
 
@@ -28,23 +27,58 @@
       <!-- 콘텐츠 영역: 최대 너비 설정, z-index로 오버레이 위에 배치 -->
       <div class="max-w-[600px] relative z-10">
         <!-- 제목: 반응형 폰트 크기, 굵은 글씨, 텍스트 그림자 적용 -->
-        <h1 class="text-3xl sm:text-4xl font-bold mb-4 sm:mb-5 text-shadow">개발자 포트폴리오</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold mb-4 sm:mb-5 text-shadow">{{ bannerTitle }}</h1>
         <!-- 소개 텍스트: 반응형 폰트 크기, 줄 간격 조정, 텍스트 그림자 적용 -->
         <p class="text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 text-shadow">
-          안녕하세요<br />
-          풀스택 개발자 양희일입니다<br />
-          포트폴리오에 방문해 주셔서 감사합니다
+          {{ bannerText }}
         </p>
         <!-- 버튼: 인라인 플렉스 레이아웃, 배경색, 패딩, 둥근 모서리, 호버 효과 -->
         <a
-          href="#about"
+          :href="bannerButton.href"
           class="inline-flex bg-teal-500 text-white py-1.5 sm:py-2 px-4 sm:px-6 rounded-full no-underline text-sm sm:font-medium hover:bg-teal-600 transition-colors items-center justify-center"
-          >ABOUT ME <span class="ml-2">↓</span></a
+          >{{ bannerButton.text }} <span class="ml-2">↓</span></a
         >
       </div>
     </div>
   </header>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+// 메뉴 아이템 인터페이스 정의
+interface MenuItem {
+  id: number;
+  text: string;
+  href: string;
+}
+
+// 버튼 인터페이스 정의
+interface Button {
+  text: string;
+  href: string;
+}
+
+// 메뉴 아이템 데이터
+const menuItems = ref<MenuItem[]>([
+  { id: 1, text: 'ABOUT', href: '#about' },
+  { id: 2, text: 'SKILLS', href: '#skills' },
+  { id: 3, text: 'ARCHIVING', href: '#archiving' },
+  { id: 4, text: 'PROJECTS', href: '#projects' },
+]);
+
+// 배너 제목
+const bannerTitle = ref<string>('개발자 포트폴리오');
+
+// 배너 텍스트
+const bannerText = ref<string>('안녕하세요\n풀스택 개발자 양희일입니다\n포트폴리오에 방문해 주셔서 감사합니다');
+
+// 배너 버튼
+const bannerButton = ref<Button>({
+  text: 'ABOUT ME',
+  href: '#about',
+});
+</script>
 
 <style scoped>
 /* 텍스트 그림자: 텍스트 가독성을 높이기 위한 그림자 효과 적용 */

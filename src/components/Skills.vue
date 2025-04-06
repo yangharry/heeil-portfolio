@@ -1,6 +1,6 @@
 <template>
   <!-- 스킬 섹션: 그라데이션 배경, 둥근 모서리, 패딩과 마진 적용 -->
-  <section id="skills" class="bg-gradient-to-r from-teal-200 to-blue-200 rounded-xl p-4 mb-4">
+  <section id="skills" class="bg-gradient-to-r from-indigo-200 via-sky-200 to-emerald-200 rounded-xl p-4 mb-4">
     <!-- 섹션 제목: 반응형 폰트 크기, 굵은 글씨, 마진 적용, 호버 시 크기 변화 효과 -->
     <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800 flex items-center transform transition-transform hover:scale-105 duration-300">
       <!-- 아이콘: 우측 마진, 통통 튀는 애니메이션 적용 -->
@@ -63,6 +63,7 @@ const skillCategories = ref<SkillCategory[]>([
       { name: 'JavaScript', bgColor: 'bg-[#F7DF1E]', textColor: 'text-gray-800' },
       { name: 'TypeScript', bgColor: 'bg-[#3178C6]', textColor: 'text-white' },
       { name: 'React', bgColor: 'bg-[#61DAFB]', textColor: 'text-gray-800' },
+      { name: 'React Native', bgColor: 'bg-[#61DAFB]', textColor: 'text-gray-800' },
       { name: 'Vue', bgColor: 'bg-[#4FC08D]', textColor: 'text-white' },
       { name: 'Tailwind CSS', bgColor: 'bg-[#38BDF8]', textColor: 'text-white' },
     ],

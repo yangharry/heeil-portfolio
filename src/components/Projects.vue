@@ -164,6 +164,23 @@ const projects = ref<Project[]>([
       },
     ],
   },
+  {
+    type: '개인 프로젝트',
+    title: 'ResSync',
+    category: 'Android App',
+    categoryClass: 'bg-amber-100 text-amber-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
+    technologies: ['React Native', 'Express.js', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions', 'Firebase'],
+    markerColor: 'bg-amber-500',
+    descriptions: ['달력 앱', '고객이 제공한 예약테이터를 달력으로 제공'],
+    links: [
+      {
+        url: 'https://play.google.com/store/apps/details?id=com.ressync_app&hl=ko',
+        text: '안드로이드',
+        bgClass: 'bg-teal-600 hover:bg-teal-700',
+        iconSrc: 'android-white-log.png',
+      },
+    ],
+  },
 ]);
 
 onMounted(() => {

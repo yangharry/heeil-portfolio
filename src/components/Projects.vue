@@ -12,8 +12,11 @@
       <div
         v-for="(project, index) in projects"
         :key="index"
-        class="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 transform hover:-translate-y-2 flex flex-col min-h-[380px]"
+        class="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 transform hover:-translate-y-2 flex flex-col min-h-[380px] relative"
       >
+        <!-- 프로젝트 아이콘 (ONERM에만 표시) -->
+        <img :src="project.icon" :alt="project.title" class="absolute top-4 right-4 w-12 h-12 shadow-sm" />
+
         <!-- 상단 정보 영역: 프로젝트 유형 및 제목 -->
         <div class="mb-3 sm:mb-4">
           <!-- 프로젝트 유형 태그: 그라데이션 배경, 둥근 모서리 -->
@@ -102,6 +105,7 @@ interface Project {
   markerColor: string;
   descriptions: string[];
   links: ProjectLink[];
+  icon: string;
 }
 
 // 프로젝트 데이터 배열
@@ -114,6 +118,7 @@ const projects = ref<Project[]>([
     technologies: ['Vue', 'Quasar', 'Express', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions'],
     markerColor: 'bg-blue-500',
     descriptions: ['운동기록 웹앱', '주요기능: 운동기록, 수행시간, 쉬는시간, 예상 1RM 제공', '구글 소셜 로그인'],
+    icon: 'onerm-icon.webp',
     links: [
       {
         url: 'https://github.com/AngryStock/onerm',
@@ -149,6 +154,7 @@ const projects = ref<Project[]>([
     technologies: ['Vue', 'TypeScript', 'Tailwind CSS'],
     markerColor: 'bg-purple-500',
     descriptions: ['개인 포트폴리오 웹사이트'],
+    icon: 'portfolio-icon.webp',
     links: [
       {
         url: 'https://github.com/yangharry/heeil-portfolio',
@@ -172,12 +178,13 @@ const projects = ref<Project[]>([
     technologies: ['React Native', 'Express.js', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions', 'Firebase'],
     markerColor: 'bg-amber-500',
     descriptions: ['달력 앱', '고객이 제공한 예약테이터를 달력으로 제공'],
+    icon: 'ressync-icon.webp',
     links: [
       {
         url: 'https://play.google.com/store/apps/details?id=com.ressync_app&hl=ko',
         text: '안드로이드',
         bgClass: 'bg-teal-600 hover:bg-teal-700',
-        iconSrc: 'android-white-log.png',
+        iconSrc: 'android-white-log.webp',
       },
     ],
   },

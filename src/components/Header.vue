@@ -16,16 +16,18 @@
       </ul>
     </nav>
 
-    <!-- 배너 영역: 최소 높이 설정, 중앙 정렬, 배경 이미지 설정 -->
+    <!-- 배너 영역: 최소 높이 설정, 중앙 정렬, 상대적 위치 설정 -->
     <div
-      class="min-h-[320px] sm:min-h-[400px] flex justify-center items-center text-center text-white py-10 sm:py-16 px-3 sm:px-5 rounded-xl mt-3 sm:mt-5 bg-cover bg-center relative"
-      style="background-image: url('banner_background.jpg')"
+      class="min-h-[320px] sm:min-h-[400px] flex justify-center items-center text-center text-white py-10 sm:py-16 px-3 sm:px-5 rounded-xl mt-3 sm:mt-5 relative overflow-hidden"
     >
+      <!-- 배경 이미지: 절대 위치, 객체 맞춤 설정, z-index를 콘텐츠보다 낮게 설정 -->
+      <img src="/banner_background.webp" alt="Banner Background" class="absolute inset-0 w-full h-full object-cover z-0 rounded-xl" />
+
       <!-- 배경 오버레이: 텍스트 가독성을 높이기 위한 반투명 검은색 레이어 -->
-      <div class="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
+      <div class="absolute inset-0 bg-black opacity-50 rounded-xl z-10"></div>
 
       <!-- 콘텐츠 영역: 최대 너비 설정, z-index로 오버레이 위에 배치 -->
-      <div class="max-w-[600px] relative z-10">
+      <div class="max-w-[600px] relative z-20">
         <!-- 제목: 반응형 폰트 크기, 굵은 글씨, 텍스트 그림자 적용 -->
         <h1 class="text-3xl sm:text-4xl font-bold mb-4 sm:mb-5 text-shadow">{{ bannerTitle }}</h1>
         <!-- 소개 텍스트: 반응형 폰트 크기, 줄 간격 조정, 텍스트 그림자 적용 -->

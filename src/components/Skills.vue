@@ -63,9 +63,10 @@ const skillCategories = ref<SkillCategory[]>([
       { name: 'JavaScript', bgColor: 'bg-[#F7DF1E]', textColor: 'text-gray-800' },
       { name: 'TypeScript', bgColor: 'bg-[#3178C6]', textColor: 'text-white' },
       { name: 'React', bgColor: 'bg-[#61DAFB]', textColor: 'text-gray-800' },
-      { name: 'React Native', bgColor: 'bg-[#61DAFB]', textColor: 'text-gray-800' },
+      { name: 'React Native', bgColor: 'bg-[#0088CC]', textColor: 'text-white' },
       { name: 'Vue', bgColor: 'bg-[#4FC08D]', textColor: 'text-white' },
-      { name: 'Tailwind CSS', bgColor: 'bg-[#38BDF8]', textColor: 'text-white' },
+      { name: 'Tailwind CSS', bgColor: 'bg-[#06B6D4]', textColor: 'text-white' },
+      { name: 'Quasar', bgColor: 'bg-[#00B4FF]', textColor: 'text-white' },
     ],
   },
   {
@@ -74,8 +75,9 @@ const skillCategories = ref<SkillCategory[]>([
     tagColor: 'green',
     skills: [
       { name: 'Node.js', bgColor: 'bg-[#339933]', textColor: 'text-white' },
-      { name: 'Express', bgColor: 'bg-[black]', textColor: 'text-white' },
+      { name: 'Express', bgColor: 'bg-[#000000]', textColor: 'text-white' },
       { name: 'MongoDB', bgColor: 'bg-[#47A248]', textColor: 'text-white' },
+      { name: 'REST API', bgColor: 'bg-[#FF5733]', textColor: 'text-white' },
     ],
   },
   {
@@ -83,9 +85,11 @@ const skillCategories = ref<SkillCategory[]>([
     tagText: 'Deployment',
     tagColor: 'purple',
     skills: [
+      { name: 'Git', bgColor: 'bg-[#F05032]', textColor: 'text-white' },
+      { name: 'GitHub', bgColor: 'bg-[#181717]', textColor: 'text-white' },
       { name: 'Docker', bgColor: 'bg-[#2496ED]', textColor: 'text-white' },
       { name: 'OCI', bgColor: 'bg-[#D24939]', textColor: 'text-white' },
-      { name: 'GitHub Actions', bgColor: 'bg-[#2088FF]', textColor: 'text-white' },
+      { name: 'GitHub Actions', bgColor: 'bg-[#4078C0]', textColor: 'text-white' },
     ],
   },
 ]);

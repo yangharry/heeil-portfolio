@@ -111,9 +111,9 @@ const projects = ref<Project[]>([
     title: '원알엠(ONERM)',
     category: 'PWA App',
     categoryClass: 'bg-blue-100 text-blue-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
-    technologies: ['Vue.js', 'Express.js', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions'],
+    technologies: ['Vue', 'Quasar', 'Express', 'MongoDB', 'OCI', 'Docker', 'GitHub Actions'],
     markerColor: 'bg-blue-500',
-    descriptions: ['운동기록 웹앱', '주요기능: 운동기록, 수행시간, 쉬는시간, 예상 1RM 제공'],
+    descriptions: ['운동기록 웹앱', '주요기능: 운동기록, 수행시간, 쉬는시간, 예상 1RM 제공', '구글 소셜 로그인'],
     links: [
       {
         url: 'https://github.com/AngryStock/onerm',
@@ -131,7 +131,7 @@ const projects = ref<Project[]>([
         url: 'https://play.google.com/store/apps/details?id=kr.onerm.twa&hl=ko',
         text: '안드로이드',
         bgClass: 'bg-teal-600 hover:bg-teal-700',
-        iconSrc: 'android-white-log.png',
+        iconSrc: 'android-white-log.webp',
       },
       {
         url: 'https://onerm.kr',
@@ -146,7 +146,7 @@ const projects = ref<Project[]>([
     title: '포트폴리오 웹사이트',
     category: 'Web',
     categoryClass: 'bg-purple-100 text-purple-600 px-2 py-1 rounded-full mt-1 sm:mt-0',
-    technologies: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    technologies: ['Vue', 'TypeScript', 'Tailwind CSS'],
     markerColor: 'bg-purple-500',
     descriptions: ['개인 포트폴리오 웹사이트'],
     links: [
